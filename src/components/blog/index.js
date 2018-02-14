@@ -1,49 +1,26 @@
-import React from 'react'
-import Article from './article.js'
+import React, { Component } from 'react'
+import withFetching from '../fetch'
 import BlogField from './blog-field.js'
-import TimeFormat from './time-format.js'
-// import Timestamp from 'react-timestamp'
 
-class Blog extends React.Component {
-  constructor(props){
-    super(props)
-    this.state={}
-    this.postData = this.postData.bind(this)
+const url = 'https://api.rss2json.com/v1/api.json'
+const feed = '?rss_url=https://medium.jasonmdesign.com/feed'
+const key = '&api_key=splntegknn4wmc7f6wc1el2ry4eoj55tdyexwjhv'
+
+const Blog = ({ data, isLoading, error }) => {
+  let articles = data.items ? data.items : []
+  let title = data.feed ? data.feed.title : ''
+
+  if (error) {
+    return <p>{error.message}</p>
   }
-  componentDidMount(){
-    // let feed = '?rss_url=https://medium.com/feed/@message2america'
-    let url = 'https://api.rss2json.com/v1/api.json'
-    let feed = '?rss_url=https://medium.jasonmdesign.com/feed'
-    let key = '&api_key=splntegknn4wmc7f6wc1el2ry4eoj55tdyexwjhv'
-    this.postData(url + feed + key)
-}
-  postData(url){
-    fetch(url)
-    .then(response => response.json())
-    .then(feed => {
-      this.setState({
-        articles: feed,
-      })
-    })
+
+  if (isLoading) {
+    return <p>Loading ...</p>
   }
-  render(){
-    const title = this.state.articles ? this.state.articles.feed.title : ''
-    return(
-        <BlogField title={title}>
-          {this.state.articles ?
-            this.state.articles.items.map((article, index) =>
-              <Article
-                key={article.pubDate + '-' + index}
-                article={article}
-                time={
-                  <TimeFormat time={article.pubDate}/>
-                }/>
-            )
-            : null
-          }
-        </BlogField>
-    )
-  }
+
+  return (
+    <BlogField title={title} articles={articles} />
+  )
 }
 
-export default Blog
+export default withFetching(url+feed+key)(Blog)

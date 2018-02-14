@@ -1,14 +1,36 @@
 import React from 'react'
+import Article from './article.js'
+import TimeFormat from './time-format.js'
 import './style.scss'
 
-const BlogField = (props) => {
+const BlogField = ({title, articles}) => {
+
+  // let generateArticles = () => {
+  //   return articles.map((article, index) =>
+  //     <Article
+  //       key={article.pubDate + '-' + index}
+  //       article={article}
+  //       time={<TimeFormat time={article.pubDate}/>}
+  //     />
+  //   )
+  // }
+  //
   return (
     <div className='blog-field'>
       <h1 className='blog-title'>
-        {props.title}
+        {title}
       </h1>
       <div className='blog-content'>
-        {props.children}
+        {articles ?
+          articles.map((article, index) =>
+            <Article
+              key={article.pubDate + '-' + index}
+              article={article}
+              time={<TimeFormat time={article.pubDate}/>}
+            />
+          )
+          : null
+        }
       </div>
     </div>
   )
