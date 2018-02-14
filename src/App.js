@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import './App.css'
 
 import Blog from './components/blog'
 
@@ -14,8 +14,8 @@ class App extends Component {
         </header>
         <Blog />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

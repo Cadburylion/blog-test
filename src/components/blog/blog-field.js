@@ -5,32 +5,23 @@ import './style.scss'
 
 const BlogField = ({title, articles}) => {
 
-  // let generateArticles = () => {
-  //   return articles.map((article, index) =>
-  //     <Article
-  //       key={article.pubDate + '-' + index}
-  //       article={article}
-  //       time={<TimeFormat time={article.pubDate}/>}
-  //     />
-  //   )
-  // }
-  //
+  const generateArticles = () => {
+    return articles.map((article, index) =>
+      <Article
+        key={article.pubDate + '-' + index}
+        article={article}
+        time={<TimeFormat time={article.pubDate}/>}
+      />
+    )
+  }
+
   return (
     <div className='blog-field'>
       <h1 className='blog-title'>
         {title}
       </h1>
       <div className='blog-content'>
-        {articles ?
-          articles.map((article, index) =>
-            <Article
-              key={article.pubDate + '-' + index}
-              article={article}
-              time={<TimeFormat time={article.pubDate}/>}
-            />
-          )
-          : null
-        }
+        {generateArticles()}
       </div>
     </div>
   )
