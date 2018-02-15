@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import withFetching from '../fetch'
 import BlogField from './blog-field.js'
 

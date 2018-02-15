@@ -1,7 +1,7 @@
 import React from 'react'
 
 const TimeFormat = ({time}) => {
-  let year = time.substring(2, 4)
+  let year = "'" + time.substring(2, 4)
   let month = time.substring(5, 7)
   let formatMonth = (month) => {
     switch(month){
