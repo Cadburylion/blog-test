@@ -3,8 +3,8 @@ import withFetching from '../fetch'
 import BlogField from './blog-field.js'
 
 const url = 'https://api.rss2json.com/v1/api.json'
-// const feed = '?rss_url=https://medium.jasonmdesign.com/feed'
-const feed = '?rss_url=https://medium.com/feed/@stanfordmag'
+const feed = '?rss_url=https://medium.jasonmdesign.com/feed'
+// const feed = '?rss_url=https://medium.com/feed/@stanfordmag'
 const key = '&api_key=splntegknn4wmc7f6wc1el2ry4eoj55tdyexwjhv'
 
 const Blog = ({ data, isLoading, error }) => {
